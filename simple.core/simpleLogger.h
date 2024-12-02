@@ -1,13 +1,13 @@
 #pragma once
 
 #include "simple.h"
+#include "simpleLogger.h"
 #include "simpleExt.h"
 #include <iostream>
-#include <string>
 
 namespace simple
 {
-	enum brogueConsoleColor : int
+	enum class simpleConsoleColor : int
 	{
 		White = 97,
 		Green = 92,
@@ -19,7 +19,6 @@ namespace simple
 	class simpleLogger
 	{
 	public:
-
 		/*
 
 			TODO: Wrap terminal stream in a class
@@ -35,41 +34,54 @@ namespace simple
 
 		*/
 
-		static void log(const char* message)
-		{
-			std::cout << message << std::endl;
-		}
+		static void log(const char* message);
 
-		static void logColor(const brogueConsoleColor& color, const char* message)
-		{
-			setColor(color);
-			std::cout << message << std::endl;
-			setColor(brogueConsoleColor::White);
-		}
+		static void logColor(const simpleConsoleColor& color, const char* message);
 
-		template<isStringConvertible T, isStringConvertible...Args>
-		static void log(const char* formatStr, const T& param, const Args&...args)
-		{
-			std::string message = simpleExt::format(formatStr, param, args...);
+		template <isStringConvertible T, isStringConvertible...Args>
+		static void log(const char* formatStr, const T& param, const Args&... args);
 
-			std::cout << message << std::endl;
-		}
-
-		template<isStringConvertible T, isStringConvertible...Args>
-		static void logColor(const brogueConsoleColor& color, const char* formatStr, const T& param, const Args&...args)
-		{
-			std::string message = simpleExt::format(formatStr, param, args...);
-
-			setColor(color);
-			std::cout << message << std::endl;
-			setColor(brogueConsoleColor::White);
-		}
+		template <isStringConvertible T, isStringConvertible...Args>
+		static void logColor(const simpleConsoleColor& color, const char* formatStr, const T& param,
+		                     const Args&... args);
 
 	private:
-
-		static void setColor(int textColor)
-		{
-			std::cout << "\033[" << textColor << "m";
-		}
+		static void setColor(simpleConsoleColor textColor);
 	};
+
+	void simpleLogger::log(const char* message)
+	{
+		std::cout << message << std::endl;
+	}
+
+	void simpleLogger::logColor(const simpleConsoleColor& color, const char* message)
+	{
+		setColor(color);
+		std::cout << message << std::endl;
+		setColor(simpleConsoleColor::White);
+	}
+
+	template <isStringConvertible T, isStringConvertible... Args>
+	void simpleLogger::log(const char* formatStr, const T& param, const Args&... args)
+	{
+		std::string message = simpleExt::format(formatStr, param, args...);
+
+		std::cout << message << std::endl;
+	}
+
+	template <isStringConvertible T, isStringConvertible... Args>
+	void simpleLogger::logColor(const simpleConsoleColor& color, const char* formatStr, const T& param,
+	                            const Args&... args)
+	{
+		std::string message = simpleExt::format(formatStr, param, args...);
+
+		setColor(color);
+		std::cout << message << std::endl;
+		setColor(simpleConsoleColor::White);
+	}
+
+	void simpleLogger::setColor(simpleConsoleColor textColor)
+	{
+		std::cout << "\033[" << (int)textColor << "m";
+	}
 }

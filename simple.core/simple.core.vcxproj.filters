@@ -45,9 +45,6 @@
     <ClInclude Include="simpleBSTNode.h">
       <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleBoundingBox.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="simpleBuffer.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
@@ -78,17 +75,8 @@
     <ClInclude Include="simpleHashStdCore.h">
       <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleLine.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleMath.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="simpleList.h">
       <Filter>Header Files\container</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleLogger.h">
-      <Filter>Header Files\utility</Filter>
     </ClInclude>
     <ClInclude Include="simpleException.h">
       <Filter>Header Files\utility</Filter>
@@ -114,12 +102,6 @@
     <ClInclude Include="simplePixelFilter.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
-    <ClInclude Include="simplePoint.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleRectangle.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="simpleRange.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -129,17 +111,28 @@
     <ClInclude Include="simpleString.h">
       <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleTriangle.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleVector.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="simpleQueue.h">
       <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleTimer.h">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
+    <ClInclude Include="bitmap.h">
+      <Filter>Header Files\declaration</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleMath.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleLogger.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="simpleTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 #include "simpleHash.h"
 #include "simpleList.h"
 
-namespace brogueHd::component
+namespace simple
 {
 	template<isHashable T>
 	class simpleListExtension

@@ -14,7 +14,7 @@ namespace simple
 
 	public:
 
-		simpleException() : simpleException("BrogueHd Error (No Message Specified)")
+		simpleException() : simpleException("Error (No Message Specified)")
 		{
 		}
 

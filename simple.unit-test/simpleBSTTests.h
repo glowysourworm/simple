@@ -1,26 +1,24 @@
 ﻿#pragma once
 
-#include "brogueTestFunction.h"
-#include "brogueTestPackage.h"
-#include "simple.h"
-#include "simpleBST.h"
-#include "simpleArray.h"
-#include "simpleString.h"
+#include "simpleTestFunction.h"
+#include "simpleTestPackage.h"
+#include <simpleBST.h>
+#include <simpleString.h>
 #include <functional>
 
-using namespace simple;
 
-namespace brogueHd::test
+namespace simple::test
 {
-	class simpleBSTTests : public brogueTestPackage
+	class simpleBSTTests : public simpleTestPackage
 	{
 	public:
-
-		simpleBSTTests() : brogueTestPackage("Simple BST Tree Tests")
+		simpleBSTTests() : simpleTestPackage("Simple BST Tree Tests")
 		{
 			// simpelBST<int, int>
-			this->addTest(brogueTestFunction("simpleBSTTests_createAndBalance", std::bind(&simpleBSTTests::createAndBalance, this)));
+			this->addTest(simpleTestFunction("simpleBSTTests_createAndBalance",
+			                                 std::bind(&simpleBSTTests::createAndBalance, this)));
 		}
+
 		~simpleBSTTests()
 		{
 		}
@@ -53,7 +51,7 @@ namespace brogueHd::test
 			tree.insert(36, 2);
 			this->output(tree.createOutput().c_str());
 
-			this->testAssert("simpleBSTTests_createAndBalance:  Node Count", [&tree] ()
+			this->testAssert("simpleBSTTests_createAndBalance:  Node Count", [&tree]()
 			{
 				return tree.count() == 8;
 			});

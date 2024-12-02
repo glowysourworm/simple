@@ -1,14 +1,14 @@
 #pragma once
 
-#include "graphNode.h"
-#include "simple.h"
+#include "simpleGraphNode.h"
+#include <simple.h>
 
-using namespace brogueHd::component;
-
-namespace simple
+namespace simple::math
 {
-	template<isHashable T>
-	struct simplePoint : graphNode
+	using namespace simple;
+
+	template <isHashable T>
+	struct simplePoint : simpleGraphNode
 	{
 		T x;
 		T y;
@@ -18,11 +18,13 @@ namespace simple
 			x = default_value::value<T>();
 			y = default_value::value<T>();
 		}
+
 		simplePoint(const simplePoint<T>& copy)
 		{
 			x = copy.x;
 			y = copy.y;
 		}
+
 		simplePoint(const T& ax, const T& ay)
 		{
 			x = ax;
@@ -35,11 +37,12 @@ namespace simple
 			y = copy.y;
 		}
 
-		bool operator != (const simplePoint<T>& point) const
+		bool operator !=(const simplePoint<T>& point) const
 		{
 			return x != point.x || y != point.y;
 		}
-		bool operator == (const simplePoint<T>& point) const
+
+		bool operator ==(const simplePoint<T>& point) const
 		{
 			return x == point.x && y == point.y;
 		}

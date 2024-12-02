@@ -1,31 +1,34 @@
 #pragma once
 
-#include "simple.h"
-#include "simpleException.h"
-#include "simpleMath.h"
+#include <simple.h>
+#include <simpleException.h>
+#include <simpleMath.h>
 #include "simplePoint.h"
+#include "simpleVectorMath.h"
 
-namespace simple
+namespace simple::math
 {
-	template<isHashable T>
+	template <isHashable T>
 	struct simpleTriangle : simpleStruct
 	{
 		simplePoint<T> point1;
 		simplePoint<T> point2;
 		simplePoint<T> point3;
 
-		simpleTriangle() 
+		simpleTriangle()
 		{
 			point1 = default_value::value<simplePoint<T>>();
 			point2 = default_value::value<simplePoint<T>>();
 			point3 = default_value::value<simplePoint<T>>();
 		}
-		simpleTriangle(const simpleTriangle<T>& copy) 
+
+		simpleTriangle(const simpleTriangle<T>& copy)
 		{
 			point1 = copy.point1;
 			point2 = copy.point2;
 			point3 = copy.point3;
 		}
+
 		simpleTriangle(const simplePoint<T>& apoint1, const simplePoint<T>& apoint2, const simplePoint<T>& apoint3)
 		{
 			point1 = apoint1;
@@ -50,8 +53,8 @@ namespace simple
 		bool operator!=(const simpleTriangle<T>& triangle) const
 		{
 			return point1 != triangle.point1 ||
-					point2 != triangle.point2 ||
-					point3 != triangle.point3;
+				point2 != triangle.point2 ||
+				point3 != triangle.point3;
 		}
 
 		size_t getHash() const override
@@ -61,9 +64,9 @@ namespace simple
 
 		T area() const
 		{
-			return simpleMath::abs((point1.x * (point2.y - point3.y) + 
-									point2.x * (point3.y - point1.y) + 
-									point3.x * (point1.y - point2.y)) / 2.0f);
+			return simpleMath::abs((point1.x * (point2.y - point3.y) +
+				point2.x * (point3.y - point1.y) +
+				point3.x * (point1.y - point2.y)) / 2.0f);
 		}
 
 		bool isPointInTriangle(const simplePoint<T>& other) const
@@ -78,8 +81,8 @@ namespace simple
 		bool isEquivalentTo(const simpleTriangle<T>& other) const
 		{
 			return containsEqualPoint(other.point1) &&
-				   containsEqualPoint(other.point2) &&
-				   containsEqualPoint(other.point3);
+				containsEqualPoint(other.point2) &&
+				containsEqualPoint(other.point3);
 		}
 
 		bool containsEqualEdge(const simplePoint<T>& vertex1, const simplePoint<T>& vertex2) const
@@ -98,8 +101,8 @@ namespace simple
 		bool containsEqualPoint(const simplePoint<T>& point) const
 		{
 			return (point == point1) ||
-					(point == point2) ||
-					(point == point3);
+				(point == point2) ||
+				(point == point3);
 		}
 
 		bool circumCircleContains(const simplePoint<T>& point) const
@@ -121,10 +124,10 @@ namespace simple
 			// Double Check:  There are only 2 possible orderings of the points
 
 			// 1 -> 2 -> 3 (Results from crossing the vectors 12 X 23 - where subtracting the points gives you the vector)
-			T d123 = simpleMath::orientation(point1, point2, point3);
+			T d123 = simpleVectorMath::orientation(point1, point2, point3);
 
 			// 1 -> 3 -> 2
-			T d132 = simpleMath::orientation(point1, point3, point2);
+			T d132 = simpleVectorMath::orientation(point1, point3, point2);
 
 			// NOTE*** Must handle collinear case. This may be the incorrect way to handle this.
 			if (d123 == 0 || d132 == 0)
@@ -170,8 +173,8 @@ namespace simple
 			T m22 = simpleMath::power<float>(m02, 2) + simpleMath::power<float>(m12, 2);
 
 			T d = (m00 * ((m11 * m22) - (m21 * m12))) -
-				  (m10 * ((m01 * m22) - (m21 * m02))) +
-				  (m20 * ((m01 * m12) - (m11 * m02)));
+				(m10 * ((m01 * m22) - (m21 * m02))) +
+				(m20 * ((m01 * m12) - (m11 * m02)));
 
 			// Theorem:  Point lies in the circum-circle iff d > 0 (When 1 -> 2 -> 3 are sorted counter-clockwise)
 			//
