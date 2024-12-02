@@ -40,6 +40,7 @@
     <ClInclude Include="simpleList.h" />
     <ClInclude Include="simpleListExtension.h" />
     <ClInclude Include="simpleLogger.h" />
+    <ClInclude Include="simpleMacros.h" />
     <ClInclude Include="simpleMaskedInt32.h" />
     <ClInclude Include="simpleMath.h" />
     <ClInclude Include="simpleOrderedList.h" />
