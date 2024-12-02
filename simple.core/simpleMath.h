@@ -8,7 +8,7 @@
 #include <cmath>
 #include <numbers>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleMath
 	{

@@ -17,7 +17,7 @@
 #include <string>
 #include <sys/stat.h>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleFileIO
 	{

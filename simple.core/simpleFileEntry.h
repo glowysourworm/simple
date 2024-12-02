@@ -7,7 +7,7 @@
 #include <corecrt.h>
 #include <cstdint>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleFileEntry : public simpleObject
 	{

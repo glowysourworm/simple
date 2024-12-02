@@ -6,7 +6,7 @@
 #include "simpleMath.h"
 #include <functional>
 
-namespace brogueHd::simple
+namespace simple
 {
 	/// <summary>
 	/// Definition of function to provide callback: 1) user can return iterationCallback 

@@ -6,7 +6,7 @@
 #include "simpleOrderedList.h"
 #include <corecrt.h>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleDirectoryEntry : simpleObject
 	{

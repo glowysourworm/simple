@@ -4,7 +4,7 @@
 #include "simpleList.h"
 #include <functional>
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable T>
 	using simpleQueueIterator = std::function<iterationCallback(const T& item)>;

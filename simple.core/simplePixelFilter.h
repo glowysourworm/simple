@@ -5,7 +5,7 @@
 #include "simplePixel.h"
 #include <cstdint>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simplePixelFilter
 	{

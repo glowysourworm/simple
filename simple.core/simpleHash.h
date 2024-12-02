@@ -8,7 +8,7 @@
 #include "simpleList.h"
 #include "simplePair.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable K, typename V>
 	class simpleHash : public simpleObject

@@ -4,7 +4,7 @@
 #include "simplePoint.h"
 #include "simpleLine.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isNumber T>
 	struct simpleRectangle : simpleStruct

@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleExt
 	{

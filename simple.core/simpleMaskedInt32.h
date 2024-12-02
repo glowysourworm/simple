@@ -4,7 +4,7 @@
 
 #include <cstdint>
 
-namespace brogueHd::simple
+namespace simple
 {
 	struct simpleMaskedInt32 : simpleStruct
 	{

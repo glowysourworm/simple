@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <type_traits>
 
-namespace brogueHd::simple
+namespace simple
 {
 	/*
 

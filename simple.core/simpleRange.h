@@ -3,7 +3,7 @@
 #include "simple.h"
 #include "simpleException.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isNumber T>
 	class simpleRange : simpleObject

@@ -5,7 +5,7 @@
 #include "simpleMaskedInt32.h"
 #include <cstdint>
 
-namespace brogueHd::simple
+namespace simple
 {
 	struct simplePixel : simpleStruct
 	{

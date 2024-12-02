@@ -8,7 +8,7 @@
 #include "simpleException.h"
 #include <unordered_map>
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable K, typename V>
 	class simpleHashStdCore : public simpleHashCore<K, V>

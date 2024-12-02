@@ -7,7 +7,7 @@
 #include "simpleHashCore.h"
 #include "simpleMath.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	// Stole this implementation:  This should be a balanced BST. The implementation looks
 	//                             clean enough; and will be changed if there are any issues.

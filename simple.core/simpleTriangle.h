@@ -5,7 +5,7 @@
 #include "simpleMath.h"
 #include "simplePoint.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable T>
 	struct simpleTriangle : simpleStruct

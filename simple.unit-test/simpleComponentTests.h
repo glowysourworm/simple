@@ -7,7 +7,7 @@
 #include <functional>
 
 using namespace brogueHd::backend::model;
-using namespace brogueHd::simple;
+using namespace simple;
 
 namespace brogueHd::test
 {

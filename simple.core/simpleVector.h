@@ -3,7 +3,7 @@
 #include "simple.h"
 #include "simpleMath.h"
 
-namespace brogueHd::simple
+namespace simple
 {
     template<isNumber T>
     struct simpleVector : simpleStruct

@@ -7,7 +7,7 @@
 #include <stacktrace>
 #include <string>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleException : std::exception
 	{

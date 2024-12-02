@@ -8,7 +8,7 @@
 #include "simpleHashCore.h"
 #include "simpleMath.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable K, typename V>
 	class simpleHashBasicCore : public simpleHashCore<K, V>

@@ -8,7 +8,7 @@
 
 using namespace brogueHd::component;
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable T>
 	struct simpleLine : public graphEdge<simplePoint<T>>

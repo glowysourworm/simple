@@ -5,7 +5,7 @@
 #include "simpleException.h"
 #include <functional>
 
-namespace brogueHd::simple
+namespace simple
 {
 	/// <summary>
 	/// Definition of simple predicate for any key-value map

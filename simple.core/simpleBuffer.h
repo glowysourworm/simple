@@ -4,7 +4,7 @@
 
 #include "simpleException.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	/// <summary>
 	/// Class to support a 32-bit word buffer

@@ -2,7 +2,7 @@
 
 #include "simple.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable K, typename V>
 	struct simplePair : simpleStruct

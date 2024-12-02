@@ -8,7 +8,7 @@
 #include "simpleString.h"
 #include <functional>
 
-using namespace brogueHd::simple;
+using namespace simple;
 
 namespace brogueHd::test
 {

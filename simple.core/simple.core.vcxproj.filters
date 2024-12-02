@@ -13,172 +13,133 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\declaration">
+      <UniqueIdentifier>{b16452f4-6c74-4063-b03e-55daf4a00261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\container">
+      <UniqueIdentifier>{86abb1e5-1455-4400-9923-2ed9cf4278c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{2b148a7b-1cca-4454-99cd-de918409d182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io">
+      <UniqueIdentifier>{00afff3b-5d9d-46f2-bce0-80ec7583a2de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\macro-utility">
+      <UniqueIdentifier>{dc323f29-fb84-408a-9060-59312996293f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{52e05946-9f31-4de4-89a2-0016f8282764}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="simple.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\declaration</Filter>
     </ClInclude>
     <ClInclude Include="simpleArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleArrayTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleBitmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleBoundingBox.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleBST.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleBSTNode.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleBSTTests.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleBoundingBox.h">
+      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="simpleBuffer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
-    <ClInclude Include="simpleComponentTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleDataStream.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleBitmap.h">
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simpleDirectoryEntry.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simpleEnumString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleExt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleFileEntry.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\macro-utility</Filter>
     </ClInclude>
     <ClInclude Include="simpleFileIO.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
-    <ClInclude Include="simpleFrameBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleGlData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleGlObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleFileEntry.h">
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simpleHash.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleHashBasicCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleHashCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleHashStdCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleHashTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleKeyboardState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleListExtension.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleLogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleMaskedInt32.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="simpleMath.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="simpleMouseState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleList.h">
+      <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleOpenGL.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleLogger.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleException.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleExt.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleListExtension.h">
+      <Filter>Header Files\container</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleMaskedInt32.h">
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simpleOrderedList.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simplePair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simplePeriodCounter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simplePixel.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simplePixelFilter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="simplePoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleRange.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="simpleRectangle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="simpleShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleShaderProgram.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleRange.h">
+      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="simpleStack.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleTimer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\container</Filter>
     </ClInclude>
     <ClInclude Include="simpleTriangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleUniform.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="simpleVector.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="simpleVertexArray.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleQueue.h">
+      <Filter>Header Files\container</Filter>
     </ClInclude>
-    <ClInclude Include="simpleVertexAttribute.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleVertexBuffer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="simpleTimer.h">
+      <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

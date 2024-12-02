@@ -17,7 +17,7 @@
 #include <fstream>
 #include <iosfwd>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleBitmap : simpleObject
 	{

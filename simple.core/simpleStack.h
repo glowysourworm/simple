@@ -3,7 +3,7 @@
 #include "simple.h"
 #include "simpleList.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable T>
 	class simpleStack : simpleObject

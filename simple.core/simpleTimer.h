@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 
-namespace brogueHd::simple
+namespace simple
 {
 	class simpleTimer
 	{

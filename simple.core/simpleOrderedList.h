@@ -6,7 +6,7 @@
 #include "simpleList.h"
 #include "simpleMath.h"
 
-namespace brogueHd::simple
+namespace simple
 {
 	template<isHashable T>
 	class simpleOrderedList : public simpleObject
