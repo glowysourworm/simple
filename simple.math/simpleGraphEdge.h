@@ -29,6 +29,11 @@ namespace simple::math
 			node2 = copy.node2;
 		}
 
+		virtual float weight() const
+		{
+			throw simpleException ("Function must be overridde in a child class:  simpelGraphEdge::weight");
+		}
+
 		void operator=(const simpleGraphEdge& copy)
 		{
 			node1 = copy.node1;

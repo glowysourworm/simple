@@ -31,6 +31,11 @@ namespace simple::math
 			this->node2 = copy.node2;
 		}
 
+		float weight() const override
+		{
+			return this->node1.distance (this->node2);
+		}
+
 		bool intersects(const simpleLine<T>& other, simplePoint<T>& intersection)
 		{
 			// Line Segment Intersection:

@@ -653,14 +653,14 @@ namespace simple
 	template<typename TResult>
 	T simpleList<T>::withMin(simpleListSelector<T, TResult> selector) const
 	{
-		TResult min = default_value::value<T>();
+		TResult min = default_value::value<TResult>();
 		int minIndex = -1;
 
 		for (int index = 0; index < _count; index++)
 		{
 			TResult value = selector(_array->get(index));
 
-			if (min == default_value::value<T>())
+			if (min == default_value::value<TResult>())
 			{
 				min = value;
 				minIndex = index;
@@ -673,7 +673,7 @@ namespace simple
 			}
 		}
 
-		return min == default_value::value<T>() ? default_value::value<T>() : _array->get(minIndex);
+		return min == default_value::value<TResult>() ? default_value::value<T>() : _array->get(minIndex);
 	}
 
 	template<isHashable T>

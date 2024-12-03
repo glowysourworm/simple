@@ -1,5 +1,6 @@
 #pragma once
 
+#include <simple.h>
 #include <simpleException.h>
 #include <simpleList.h>
 #include "simpleGraph.h"
@@ -10,6 +11,8 @@
 
 namespace simple::math
 {
+	using namespace simple;
+
 	/// <summary>
 	/// Defines the Minimum Spanning Tree (MST) algorithm Prim's Algorithm
 	/// </summary>
@@ -55,62 +58,65 @@ namespace simple::math
 			simplePoint<float> nextVertex = default_value::value<simplePoint<float>>();
 			simpleLine<float> nextEdge = default_value::value<simpleLine<float>>();
 
-			//// Initialize the tree
-			//if (treeEdges.count() == 0)
-			//{
-			//	simplePoint<float> firstVertex = unusedVertices.get(0);
+			// Initialize the tree
+			if (treeEdges.count() == 0)
+			{
+				simplePoint<float> firstVertex = unusedVertices.get(0);
 
-			//	// Remove the first vertex - add to the used collection
-			//	unusedVertices.remove(firstVertex);
-			//	usedVertices.add(firstVertex);
+				// Remove the first vertex - add to the used collection
+				unusedVertices.remove(firstVertex);
+				usedVertices.add(firstVertex);
 
-			//	nextVertex = unusedVertices.withMin<int>([&firstVertex] (const simplePoint<float>& vertex)
-			//	{
-			//		return firstVertex.distance(vertex);
-			//	});
+				nextVertex = unusedVertices.withMin<double>([&firstVertex] (const simplePoint<float>& vertex)
+				{
+					return firstVertex.distance(vertex);
+				});
 
-			//	nextEdge = graphEdgeConstructor(firstVertex, nextVertex);
-			//}
+				nextEdge = edgeConstructor (firstVertex, nextVertex);
+			}
 
-			//else
-			//{
-			//	// Get the next edge that connects an UNUSED vertex to a USED vertex
-			//	unusedVertices.forEach([&treeEdges, &that] (const simplePoint<float>& vertex)
-			//	{
-			//		// Edges in the current tree
-			//		int potentialEdgeWeight = std::numeric_limits<int>::max();
-			//		simplePoint<float> potentialNode = default_value::value<simplePoint<float>>();
+			else
+			{
+				//Get the next edge that connects an UNUSED vertex to a USED vertex
+				for (int index = 0; index < unusedVertices.count (); index++)
+				{
+					// Edges in the current tree
+					simplePoint<float> vertex = unusedVertices.get (index);
 
-			//		treeEdges.forEach([&vertex, &potentialEdgeWeight, &that] (TEdge edge)
-			//		{
-			//			int distance = edge.node1.calculateDistance(vertex);
+					float potentialEdgeWeight = std::numeric_limits<float>::max ();
+					simplePoint<float> potentialNode = default_value::value<simplePoint<float>> ();
 
-			//			if (distance < potentialEdgeWeight)
-			//			{
-			//				potentialEdgeWeight = distance;
-			//				potentialNode = edge.node1;
-			//			}
+					for (int edgeIndex = 0; edgeIndex < treeEdges.count (); edgeIndex++)
+					{
+						simpleLine<float> edge = treeEdges.get (edgeIndex);
+						float distance = edge.node1.distance (vertex);
 
-			//			distance = edge.node2.calculateDistance(vertex);
+						if (distance < potentialEdgeWeight)
+						{
+							potentialEdgeWeight = distance;
+							potentialNode = edge.node1;
+						}
 
-			//			if (distance < potentialEdgeWeight)
-			//			{
-			//				potentialEdgeWeight = distance;
-			//				potentialNode = edge.node2;
-			//			}
-			//		});
+						distance = edge.node2.distance (vertex);
 
-			//		// Check both potential edges for the least distant choice
-			//		if (nextEdge == default_value::value<simplePoint<float>>() || potentialEdgeWeight < nextEdge.weight())
-			//		{
-			//			nextEdge = graphEdgeConstructor(potentialNode, vertex);
-			//			nextVertex = vertex;
-			//		}
-			//	});
-			//}
+						if (distance < potentialEdgeWeight)
+						{
+							potentialEdgeWeight = distance;
+							potentialNode = edge.node2;
+						}
+					}
 
-			//if (nextEdge == default_value::value<simpleLine<float>>())
-			//	throw simpleException("No connection found between regions Minimum Spanning Tree:  primsAlgorithm.h");
+					// Check both potential edges for the least distant choice
+					if (nextEdge == default_value::value<simpleLine<float>> () || potentialEdgeWeight < nextEdge.weight ())
+					{
+						nextEdge = edgeConstructor (potentialNode, vertex);
+						nextVertex = vertex;
+					}
+				}
+			}
+
+			if (nextEdge == default_value::value<simpleLine<float>>())
+				throw simpleException("No connection found between regions Minimum Spanning Tree:  primsAlgorithm.h");
 
 			unusedVertices.remove(nextVertex);
 			usedVertices.add(nextVertex);
