@@ -51,6 +51,8 @@
     <ClInclude Include="simpleRange.h" />
     <ClInclude Include="simpleStack.h" />
     <ClInclude Include="simpleString.h" />
+    <ClInclude Include="simpleTestFunction.h" />
+    <ClInclude Include="simpleTestPackage.h" />
     <ClInclude Include="simpleTimer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +159,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>

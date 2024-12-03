@@ -31,6 +31,9 @@
     <Filter Include="Header Files\utility">
       <UniqueIdentifier>{52e05946-9f31-4de4-89a2-0016f8282764}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\unit-test">
+      <UniqueIdentifier>{44973a3b-4ce6-4999-8aae-19e866ac29db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="simple.h">
@@ -131,6 +134,12 @@
     </ClInclude>
     <ClInclude Include="simpleMacros.h">
       <Filter>Header Files\macro-utility</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleTestFunction.h">
+      <Filter>Header Files\unit-test</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleTestPackage.h">
+      <Filter>Header Files\unit-test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

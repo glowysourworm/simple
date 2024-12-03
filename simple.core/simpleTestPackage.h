@@ -8,10 +8,8 @@
 #include <simpleLogger.h>
 #include <simpleString.h>
 
-namespace simple::test
+namespace simple
 {
-	using namespace simple;
-
 	using simpleTestAssertion = std::function<bool (void)>;
 
 	class simpleTestPackage

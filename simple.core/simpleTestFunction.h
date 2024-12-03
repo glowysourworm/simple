@@ -4,11 +4,11 @@
 #include <simpleString.h>
 #include <functional>
 
-namespace simple::test
+namespace simple
 {
 	struct simpleTestFunction : simpleStruct
 	{
-		simple::simpleString name;
+		simpleString name;
 		std::function<bool (void)> testRun;
 
 		simpleTestFunction()

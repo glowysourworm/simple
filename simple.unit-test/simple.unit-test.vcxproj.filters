@@ -26,16 +26,7 @@
     <ClInclude Include="simpleBSTTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simpleComponentTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="simpleHashTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleTestPackage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simpleTestFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

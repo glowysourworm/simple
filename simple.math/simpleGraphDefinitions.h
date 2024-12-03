@@ -12,7 +12,7 @@ namespace simple::math
 {
 	// Abstract graph constraints
 	template <typename TNode>
-	concept isGraphNode = std::convertible_to<simpleGraphNode>;
+	concept isGraphNode = std::convertible_to<TNode, simpleGraphNode>;
 
 	template <typename TEdge, typename TNode>
 	concept isGraphEdge = std::convertible_to<TEdge, simpleGraphEdge<TNode>> &&
@@ -30,6 +30,11 @@ namespace simple::math
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
 	using graphSimpleEdgeIterator = std::function<iterationCallback (const TEdge& edge)>;
+
+	//template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+	//class graphSimpleEdgeIterator : public std::function<iterationCallback (const TEdge& edge)>
+	//{
+	//};
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
 	using graphIterator = std::function<iterationCallback (const TNode& node, const simpleList<TEdge>& adjacentEdges)>;

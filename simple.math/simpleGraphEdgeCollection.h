@@ -82,7 +82,7 @@ namespace simple::math
 	}
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
-	simpleGraphEdgeCollection<TNode, TEdge>::simpleGraphEdgeCollection(const graphEdgeCollection& copy)
+	simpleGraphEdgeCollection<TNode, TEdge>::simpleGraphEdgeCollection(const simpleGraphEdgeCollection& copy)
 	{
 		// Use copy contrustors! Keep the two node / edge hash table copies; and construct our own nodeAdjacentEdges.
 		_nodes = new simpleHash<TNode, TNode>();

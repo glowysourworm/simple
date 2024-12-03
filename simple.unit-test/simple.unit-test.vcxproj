@@ -116,14 +116,24 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
       <AdditionalIncludeDirectories>..\simple.core;..\simple.math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>simple.core.lib;simple.math.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Backup\_Source\Git\simple\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalOptions>/VERBOSE</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </Link>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,10 +157,7 @@
   <ItemGroup>
     <ClInclude Include="simpleArrayTests.h" />
     <ClInclude Include="simpleBSTTests.h" />
-    <ClInclude Include="simpleComponentTests.h" />
     <ClInclude Include="simpleHashTests.h" />
-    <ClInclude Include="simpleTestFunction.h" />
-    <ClInclude Include="simpleTestPackage.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\simple.core\simple.core.vcxproj">

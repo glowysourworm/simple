@@ -9,6 +9,7 @@ namespace simple::math
 {
 	class simpleVectorMath
 	{
+	public:
 		template <isNumber TMath>
 		static simpleVector<TMath> subtract(const simplePoint<TMath>& point2, const simplePoint<TMath>& point1)
 		{
@@ -25,8 +26,8 @@ namespace simple::math
 		                       const simplePoint<TMath>& point3)
 		{
 			// 1 -> 2 -> 3 (Results from crossing the vectors 12 X 23 - where subtracting the points gives you the vector)
-			simpleVector<TMath> vector12 = simpleMath::subtract(point2, point1);
-			simpleVector<TMath> vector23 = simpleMath::subtract(point3, point2);
+			simpleVector<TMath> vector12 = simpleVectorMath::subtract(point2, point1);
+			simpleVector<TMath> vector23 = simpleVectorMath::subtract(point3, point2);
 
 			TMath value = vector12.cross(vector23);
 

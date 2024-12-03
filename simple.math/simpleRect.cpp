@@ -61,27 +61,6 @@ namespace simple::math
 			height != rect.height;
 	}
 
-	/// <summary>
-	/// Returns true if the grid rect represents a valid rectangle in UI coordinates
-	/// </summary>
-	/// <returns></returns>
-	bool simpleRect::validateUI() const
-	{
-		if (column < 0)
-			return false;
-
-		if (row < 0)
-			return false;
-
-		if (width <= 0)
-			return false;
-
-		if (height <= 0)
-			return false;
-
-		return true;
-	}
-
 	int simpleRect::left() const
 
 	{
@@ -150,6 +129,48 @@ namespace simple::math
 			return false;
 
 		return true;
+	}
+
+	bool simpleRect::overlaps(const simpleRect& rect) const
+	{
+		return !(right() < rect.left() ||
+			left() > rect.right() ||
+			top() > rect.bottom() ||
+			bottom() < rect.top());
+	}
+
+	void simpleRect::expand(int amount)
+	{
+		expand(column - 1, row - 1);
+		expand(right() + 1, bottom() + 1);
+	}
+
+	void simpleRect::expand(const simpleRect& rect)
+	{
+		expand(rect.left(), rect.top());
+		expand(rect.right(), rect.bottom());
+	}
+
+	void simpleRect::expand(int acolumn, int arow)
+	{
+		if (acolumn < left())
+		{
+			width += column - acolumn;
+			column = acolumn;
+		}
+		if (arow < top())
+		{
+			height += row - arow;
+			row = arow;
+		}
+		if (acolumn > right())
+		{
+			width += acolumn - right();
+		}
+		if (arow > bottom())
+		{
+			height += arow - bottom();
+		}
 	}
 
 	size_t simpleRect::getHash() const

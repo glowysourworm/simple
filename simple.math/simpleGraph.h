@@ -81,7 +81,7 @@ namespace simple::math
 	}
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
-	simpleGraph<TNode, TEdge>::simpleGraph(const graph<TNode, TEdge>& copy)
+	simpleGraph<TNode, TEdge>::simpleGraph(const simpleGraph<TNode, TEdge>& copy)
 	{
 		_nodes = new simpleList<TNode>(copy.getNodes());
 		_edgeCollection = new simpleGraphEdgeCollection(copy.getNodes(), copy.getEdges());

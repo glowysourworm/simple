@@ -6,7 +6,7 @@
 
 namespace simple::math
 {
-	struct simpleRect : simpleStruct
+	struct simpleRect : public simpleStruct
 	{
 	public:
 		int column;
@@ -24,11 +24,6 @@ namespace simple::math
 		bool operator==(const simpleRect& rect) const;
 		bool operator!=(const simpleRect& rect) const;
 
-		/// <summary>
-		/// Returns true if the grid rect represents a valid rectangle in UI coordinates
-		/// </summary>
-		bool validateUI() const;
-
 		int left() const;
 		int right() const;
 		int top() const;
@@ -38,6 +33,10 @@ namespace simple::math
 		long area() const;
 		bool contains(int acolumn, int arow) const;
 		bool contains(const simpleRect& rect) const;
+		bool overlaps(const simpleRect& rect) const;
+		void expand(int amount);
+		void expand(const simpleRect& rect);
+		void expand(int acolumn, int arow);
 
 		virtual size_t getHash() const override;
 	};

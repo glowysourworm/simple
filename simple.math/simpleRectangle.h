@@ -62,6 +62,11 @@ namespace simple::math
 				lineTop.intersects(line, intersection);
 		}
 
+		simpleRect getSimpleRect() const
+		{
+			return simpleRect(_topLeft.x, _topLeft.y, _bottomRight.x - _topLeft.x + 1, _bottomRight.y - _topLeft.y + 1);
+		}
+
 		simplePoint<T> getTopLeft() const
 		{
 			return _topLeft;
