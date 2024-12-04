@@ -72,10 +72,22 @@ namespace simple::math
 			return _topLeft;
 		}
 
+		simplePoint<T> getTopRight () const
+		{
+			return simplePoint<T>(_bottomRight.x, _topLeft.y);
+		}
+
+		simplePoint<T> getBottomLeft () const
+		{
+			return simplePoint<T> (_topLeft.x, _bottomRight.y);
+		}
+
 		simplePoint<T> getBottomRight() const
 		{
 			return _bottomRight;
 		}
+
+
 
 	private:
 		simplePoint<T> _topLeft;

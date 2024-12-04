@@ -169,6 +169,7 @@
     <ClInclude Include="simpleGraphEdge.h" />
     <ClInclude Include="simpleGraphEdgeCollection.h" />
     <ClInclude Include="simpleGraphNode.h" />
+    <ClInclude Include="simplePolygon.h" />
     <ClInclude Include="simpleRect.h" />
     <ClInclude Include="primsAlgorithm.h" />
     <ClInclude Include="simpleLine.h" />
