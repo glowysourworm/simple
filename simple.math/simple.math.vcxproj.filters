@@ -69,6 +69,9 @@
     <ClInclude Include="simplePolygon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dijkstrasAlgorithm.h">
+      <Filter>Header Files\algorithm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="simpleRect.cpp">

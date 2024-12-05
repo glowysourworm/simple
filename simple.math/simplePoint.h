@@ -55,6 +55,12 @@ namespace simple::math
 			return sqrtf((dx * dx) + (dy * dy));
 		}
 
+		void translate(T offsetX, T offsetY)
+		{
+			x = x + offsetX;
+			y = y + offsetY;
+		}
+
 		size_t getHash() const override
 		{
 			return hashGenerator::generateHash(x, y);

@@ -26,8 +26,6 @@ namespace simple::math
 		simpleGraph(const simpleGraph<TNode, TEdge>& copy);
 		~simpleGraph();
 
-		void operator=(const simpleGraph<TNode, TEdge>& other);
-
 		void addEdge(const TEdge& edge);
 		void modify(const TEdge& existingEdge, const TEdge& newEdge);
 		simpleList<TEdge> getAdjacentEdges(const TNode& node) const;
@@ -35,12 +33,15 @@ namespace simple::math
 		bool containsEdge(const TEdge& edge) const;
 		bool containsNode(const TNode& node) const;
 
+		simpleList<TEdge> getEdges () const;
+
 		int getNodeCount() const;
 		int getEdgeCount() const;
 
 		void iterate(graphIterator<TNode, TEdge> callback) const;
 		void iterateNodes(graphSimpleNodeIterator<TNode, TEdge> callback) const;
 		void iterateEdges(graphSimpleEdgeIterator<TNode, TEdge> callback) const;
+		void iterateAdjacentEdges (const TNode& node, graphSimpleEdgeIterator<TNode, TEdge> callback);
 
 	private:
 		simpleList<TNode> getNodes() const
@@ -95,16 +96,6 @@ namespace simple::math
 	}
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
-	void simpleGraph<TNode, TEdge>::operator=(const simpleGraph<TNode, TEdge>& other)
-	{
-		delete _nodes;
-		delete _edgeCollection;
-
-		_nodes = new simpleList<TNode>(other.getNodes());
-		_edgeCollection = new simpleGraphEdgeCollection(other.getNodes(), other.getEdges());
-	}
-
-	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
 	void simpleGraph<TNode, TEdge>::addEdge(const TEdge& edge)
 	{
 		if (!_nodes->contains(edge.node1))
@@ -126,6 +117,12 @@ namespace simple::math
 	int simpleGraph<TNode, TEdge>::getEdgeCount() const
 	{
 		return _edgeCollection->edgeCount();
+	}
+
+	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+	simpleList<TEdge> simpleGraph<TNode, TEdge>::getEdges() const
+	{
+		return _edgeCollection->getEdges();
 	}
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
@@ -192,5 +189,11 @@ namespace simple::math
 	void simpleGraph<TNode, TEdge>::iterateEdges(graphSimpleEdgeIterator<TNode, TEdge> callback) const
 	{
 		_edgeCollection->getEdges().forEach(callback);
+	}
+
+	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+	void simpleGraph<TNode, TEdge>::iterateAdjacentEdges(const TNode& node, graphSimpleEdgeIterator<TNode, TEdge> callback)
+	{
+		_edgeCollection->getAdjacentEdges (node).forEach (callback);
 	}
 }

@@ -19,6 +19,12 @@ namespace simple::math
         bool isClosed () const;
         int segmentCount () const;
 
+        // Calculates intersection using line-segment point-in-polygon test
+        simpleLineIntersectionResult calculateIntersection(const simpleLine<T>& line);
+
+        // Creates deep copy of the polygon's data
+        simplePolygon<T>* copy () const;
+
         simpleLine<T> getSegment (int index) const;
         simpleLine<T> getNextSegment (int index) const;
         simpleLine<T> getPreviousSegment (int index) const;
@@ -81,6 +87,36 @@ namespace simple::math
     }
 
     template<isHashable T>
+    simplePolygon<T>* simplePolygon<T>::copy () const
+    {
+        simpleList<simpleLine<T>> segments;
+
+        for (int index = 0; index < _segments->count(); index++)
+        {
+            segments.add (*_segments->get (index));
+        }
+
+        return new simplePolygon (segments, _isClosed);
+    }
+
+    template<isHashable T>
+    simpleLineIntersectionResult simplePolygon<T>::calculateIntersection(const simpleLine<T>& line)
+    {
+        simpleLineIntersectionResult result = simpleLineIntersectionResult::None;
+
+	    for (int index = 0; index < _segments->count(); index++)
+	    {
+            simpleLineIntersectionResult nextResult = line.calculateIntersection(_segments->get (index));
+
+            // None < Single < Collinear
+            if (nextResult > result)
+                result = nextResult;
+	    }
+
+        return result;
+    }
+
+    template<isHashable T>
     bool simplePolygon<T>::isClosed () const
     {
         return _isClosed;
@@ -95,7 +131,7 @@ namespace simple::math
     template<isHashable T>
     simpleLine<T> simplePolygon<T>::getSegment (int index) const
     {
-        return _segments->get (index);
+        return *_segments->get (index);
     }
 
     template<isHashable T>

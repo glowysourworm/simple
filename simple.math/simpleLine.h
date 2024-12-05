@@ -11,6 +11,13 @@ namespace simple::math
 {
 	using namespace simple;
 
+	enum class simpleLineIntersectionResult
+	{
+		None = 0,
+		SinglePoint = 1,
+		Collinear = 2
+	};
+
 	template <isHashable T>
 	struct simpleLine : public simpleGraphEdge<simplePoint<T>>
 	{
@@ -31,12 +38,30 @@ namespace simple::math
 			this->node2 = copy.node2;
 		}
 
+		void operator=(const simpleLine<T>& other)
+		{
+			this->node1 = other.node1;
+			this->node2 = other.node2;
+		}
+
+		bool operator==(const simpleLine<T>& other)
+		{
+			return this->node1 == other.node1 &&
+				this->node2 == other.node2;
+		}
+
+		bool operator!=(const simpleLine<T>& other)
+		{
+			return this->node1 != other.node1 ||
+				this->node2 != other.node2;
+		}
+
 		float weight() const override
 		{
 			return this->node1.distance (this->node2);
 		}
 
-		bool intersects(const simpleLine<T>& other, simplePoint<T>& intersection)
+		simpleLineIntersectionResult calculateIntersection (const simpleLine<T>& other)
 		{
 			// Line Segment Intersection:
 			//
@@ -64,53 +89,42 @@ namespace simple::math
 			// Find the four orientations needed for general and 
 			// special cases 
 			T o1 = simpleVectorMath::orientationPoint(p1, q1, p2);
-			// TODO TODO!!! We have bigger issues with Real V.S. UI Coordinates. 
+
+			// TODO TODO!!! We have bigger issues with Real V.S. UI Coordinates.
+			//
+			// Update:  This algorithm works in Real coordinates. There's still a
+			//			todo on the backlog for the general "coordinate system"
+			//			problem being added to "simple"
 			T o2 = simpleVectorMath::orientationPoint(p1, q1, q2);
+
 			// These need to be explicit! And, all our math has to be done in
 			T o3 = simpleVectorMath::orientationPoint(p2, q2, p1);
+
 			// REAL coordinates unless the algorithm / function stipulates it explicitly!
 			T o4 = simpleVectorMath::orientationPoint(p2, q2, q1);
 
 			// General case 
 			if ((o1 != o2) && (o3 != o4))
-				return true;
+				return simpleLineIntersectionResult::SinglePoint;
 
 			// Special Cases (collinear)
 			// p1, q1 and p2 are collinear and p2 lies on segment p1q1 
 			if (o1 == 0 && simpleVectorMath::onSegmentCollinear(p1, p2, q1))
-				return true;
+				return simpleLineIntersectionResult::Collinear;
 
 			// p1, q1 and q2 are collinear and q2 lies on segment p1q1 
 			if (o2 == 0 && simpleVectorMath::onSegmentCollinear(p1, q2, q1))
-				return true;
+				return simpleLineIntersectionResult::Collinear;
 
 			// p2, q2 and p1 are collinear and p1 lies on segment p2q2 
 			if (o3 == 0 && simpleVectorMath::onSegmentCollinear(p2, p1, q2))
-				return true;
+				return simpleLineIntersectionResult::Collinear;
 
 			// p2, q2 and q1 are collinear and q1 lies on segment p2q2 
 			if (o4 == 0 && simpleVectorMath::onSegmentCollinear(p2, q1, q2))
-				return true;
+				return simpleLineIntersectionResult::Collinear;
 
-			return false;
-		}
-
-		void operator=(const simpleLine<T>& other)
-		{
-			this->node1 = other.node1;
-			this->node2 = other.node2;
-		}
-
-		bool operator==(const simpleLine<T>& other)
-		{
-			return this->node1 == other.node1 &&
-				this->node2 == other.node2;
-		}
-
-		bool operator!=(const simpleLine<T>& other)
-		{
-			return this->node1 != other.node1 ||
-				this->node2 != other.node2;
+			return simpleLineIntersectionResult::None;
 		}
 
 		bool isEquivalent(const simplePoint<T>& point1, const simplePoint<T>& point2) const

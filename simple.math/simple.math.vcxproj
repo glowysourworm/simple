@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="delaunayAlgorithm.h" />
+    <ClInclude Include="dijkstrasAlgorithm.h" />
     <ClInclude Include="simpleGraph.h" />
     <ClInclude Include="simpleGraphAlgorithm.h" />
     <ClInclude Include="simpleGraphDefinitions.h" />
