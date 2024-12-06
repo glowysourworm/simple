@@ -58,6 +58,21 @@ namespace simple::math
     }
 
     template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+    dijkstrasAlgorithm<TNode, TEdge>::~dijkstrasAlgorithm()
+    {
+        _frontier->iterate([] (float weight, simpleHash<TNode, TNode>* weightList)
+        {
+            delete weightList;
+            return iterationCallback::iterate;
+        });
+
+        delete _visitedDict;
+        delete _outputDict;
+        delete _discoveredDict;
+        delete _frontier;
+    }
+
+	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
     void dijkstrasAlgorithm<TNode, TEdge>::initialize(const TNode& source, const TNode& destination)
     {
         if (source == destination)
@@ -72,7 +87,7 @@ namespace simple::math
         _frontier->clear();
 
         simpleHash<TNode, bool>* visitedDict = _visitedDict;
-        simpleHash<TNode, bool>* outputDict = _outputDict;
+        simpleHash<TNode, float>* outputDict = _outputDict;
 
         _graph->iterateNodes([&visitedDict, &outputDict, &source] (const TNode& node)
         {
@@ -86,8 +101,7 @@ namespace simple::math
     }
 
     /// <summary>
-    /// Runs Dijkstra's algorithm on an IGraph using the specified type. NOTE*** Type T must support
-    /// reference lookup. (Used for list comparison)
+    /// Runs Dijkstra's algorithm on the simpleGraph instance.
     /// </summary>
     template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
     simpleArray<TNode> dijkstrasAlgorithm<TNode, TEdge>::run()
@@ -95,14 +109,14 @@ namespace simple::math
         if (!_initialized)
             throw simpleException("Trying to run dijkstrasAlgorithm before initializing");
 
-        const dijkstrasAlgorithm<TNode, TEdge>* that = this;
+        dijkstrasAlgorithm<TNode, TEdge>* that = this;
         TNode currentNode = _source;
 
         simpleHash<TNode, bool>* visitedDict = _visitedDict;
         simpleHash<TNode, float>* outputDict = _outputDict;
 
         // Iterate while target not reached (AND) not visited
-        while (!visitedDict->get(currentNode) && !currentNode == _destination)
+        while (!visitedDict->get(currentNode) && currentNode != _destination)
         {
             // Fetch the current weight for this vertex
             float currentWeight = _outputDict->get(currentNode);

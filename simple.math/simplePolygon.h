@@ -157,7 +157,7 @@ namespace simple::math
     {
 	    for (int index = 0; index < _segments->count(); index++)
 	    {
-            _segments->translsate(translation);
+            _segments->get(index)->translate(translation);
 	    }
     }
 }
