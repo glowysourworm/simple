@@ -29,6 +29,12 @@ namespace simple::math
         simpleLine<T> getNextSegment (int index) const;
         simpleLine<T> getPreviousSegment (int index) const;
 
+        void translate(const simplePoint<T>& translation);
+
+    private:
+
+        void initialize(const simpleList<simpleLine<T>>& orderedSegments, bool isClosed);
+
 	private:
 
         simpleList<simpleLine<T>*>* _segments;
@@ -66,7 +72,7 @@ namespace simple::math
         // VAILDATION
         if (isClosed)
         {
-            if (orderedSegments.get(0).node1 != orderedSegments.get(orderedSegments.count()) - 1).node2)
+            if (orderedSegments.get(0).node1 != orderedSegments.get(orderedSegments.count() - 1).node2)
                 throw simpleException ("Invalid simplePolygon:  Must be a closed, sequential set of line segments");
 
             for (int index = 0; index < orderedSegments.count() - 2; index++)
@@ -144,5 +150,14 @@ namespace simple::math
     simpleLine<T> simplePolygon<T>::getPreviousSegment (int index) const
     {
         return index - 1 < 0 ? _segments->get(_segments->count() - 1) : _segments->get (index - 1);
+    }
+
+    template<isHashable T>
+    void simplePolygon<T>::translate(const simplePoint<T>& translation)
+    {
+	    for (int index = 0; index < _segments->count(); index++)
+	    {
+            _segments->translsate(translation);
+	    }
     }
 }

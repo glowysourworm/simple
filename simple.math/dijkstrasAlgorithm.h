@@ -17,7 +17,7 @@ namespace simple::math
     {
     public:
 
-        dijkstrasAlgorithm();
+        dijkstrasAlgorithm(simpleGraph<TNode, TEdge>* graph);
         ~dijkstrasAlgorithm();
 
         void initialize(const TNode& source, const TNode& destination);
@@ -60,8 +60,8 @@ namespace simple::math
     template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
     void dijkstrasAlgorithm<TNode, TEdge>::initialize(const TNode& source, const TNode& destination)
     {
-        if (source == destination))
-        throw simpleException("Trying to run dijkstrasAlgorithm with the same source and destination");
+        if (source == destination)
+			throw simpleException("Trying to run dijkstrasAlgorithm with the same source and destination");
 
         _source = source;
         _destination = destination;
@@ -71,10 +71,13 @@ namespace simple::math
         _discoveredDict->clear();
         _frontier->clear();
 
-        _graph->iterateNodes([&_visitedDict, &_outputDict, &source] (const TNode& node)
+        simpleHash<TNode, bool>* visitedDict = _visitedDict;
+        simpleHash<TNode, bool>* outputDict = _outputDict;
+
+        _graph->iterateNodes([&visitedDict, &outputDict, &source] (const TNode& node)
         {
-            _visitedDict->add(node, false);
-            _outputDict->add(node, (node == source) ? 0 : std::numeric_limits<float>::max());
+            visitedDict->add(node, false);
+            outputDict->add(node, (node == source) ? 0 : std::numeric_limits<float>::max());
 
             return iterationCallback::iterate;
         });
@@ -95,22 +98,25 @@ namespace simple::math
         const dijkstrasAlgorithm<TNode, TEdge>* that = this;
         TNode currentNode = _source;
 
+        simpleHash<TNode, bool>* visitedDict = _visitedDict;
+        simpleHash<TNode, float>* outputDict = _outputDict;
+
         // Iterate while target not reached (AND) not visited
-        while (!_visitedDict->get(currentNode) && !currentNode == _destination)
+        while (!visitedDict->get(currentNode) && !currentNode == _destination)
         {
             // Fetch the current weight for this vertex
             float currentWeight = _outputDict->get(currentNode);
 
             // Mark node as visited
-            _visitedDict->set(currentNode, true);
+            visitedDict->set(currentNode, true);
 
             // Iterate edges connected to the current vertex
-            _graph->iterateAdjacentEdges(currentNode, [&that, &currentWeight] (const TEdge& adjacentEdge)
+            _graph->iterateAdjacentEdges(currentNode, [&that, &visitedDict, &currentNode, &currentWeight] (const TEdge& adjacentEdge)
             {
                 TNode adjacentNode = (adjacentEdge.node1 == currentNode) ? adjacentEdge.node2 : adjacentEdge.node1;
 
                 // Not yet visited - CAN MODIFY OUTPUT VALUE
-                if (!_visitedDict->get(adjacentNode))
+                if (!visitedDict->get(adjacentNode))
                 {
                     that->updateOutput(adjacentEdge, adjacentNode, currentWeight);
                 }
@@ -160,7 +166,8 @@ namespace simple::math
                 finalRoute.add(currentNode);
 
                 // Find lowest weight edge towards source
-                _graph->iterateAdjacentEdges(currentNode, [] (const TEdge& edge)
+                _graph->iterateAdjacentEdges(currentNode, 
+                [&outputDict, &currentNode, &currentWeight, &nextNode, &finalEdge] (const TEdge& edge)
                 {
                     if (edge.node1 != currentNode &&
                         edge.node2 != currentNode)
@@ -168,9 +175,9 @@ namespace simple::math
 
                     TNode otherNode = (edge.node1 == currentNode) ? edge.node2 : edge.node1;
 
-                    if (_outputDict->get(otherNode) < currentWeight)
+                    if (outputDict->get(otherNode) < currentWeight)
                     {
-                        currentWeight = _outputDict->get(otherNode);
+                        currentWeight = outputDict->get(otherNode);
                         nextNode = otherNode;
                         finalEdge = edge;
                     }

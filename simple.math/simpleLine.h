@@ -56,6 +56,12 @@ namespace simple::math
 				this->node2 != other.node2;
 		}
 
+		void translate(const simplePoint<T>& offset)
+		{
+			this->node1.translate(offset.x, offset.y);
+			this->node2.translate(offset.x, offset.y);
+		}
+
 		float weight() const override
 		{
 			return this->node1.distance (this->node2);

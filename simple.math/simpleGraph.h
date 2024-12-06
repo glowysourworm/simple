@@ -33,26 +33,15 @@ namespace simple::math
 		bool containsEdge(const TEdge& edge) const;
 		bool containsNode(const TNode& node) const;
 
-		simpleList<TEdge> getEdges () const;
-
 		int getNodeCount() const;
 		int getEdgeCount() const;
+		simpleList<TNode> getNodes() const;
+		simpleList<TEdge> getEdges() const;
 
 		void iterate(graphIterator<TNode, TEdge> callback) const;
 		void iterateNodes(graphSimpleNodeIterator<TNode, TEdge> callback) const;
 		void iterateEdges(graphSimpleEdgeIterator<TNode, TEdge> callback) const;
 		void iterateAdjacentEdges (const TNode& node, graphSimpleEdgeIterator<TNode, TEdge> callback);
-
-	private:
-		simpleList<TNode> getNodes() const
-		{
-			return *_nodes;
-		}
-
-		simpleGraphEdgeCollection<TNode, TEdge> getEdges() const
-		{
-			return *_edgeCollection;
-		}
 
 	private:
 		simpleList<TNode>* _nodes;
@@ -120,10 +109,17 @@ namespace simple::math
 	}
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+	simpleList<TNode> simpleGraph<TNode, TEdge>::getNodes() const
+	{
+		return *_nodes;
+	}
+
+	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
 	simpleList<TEdge> simpleGraph<TNode, TEdge>::getEdges() const
 	{
 		return _edgeCollection->getEdges();
 	}
+
 
 	template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
 	void simpleGraph<TNode, TEdge>::modify(const TEdge& existingEdge, const TEdge& newEdge)

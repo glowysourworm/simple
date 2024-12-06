@@ -6,6 +6,7 @@ namespace simple::math
 {
 	struct simpleGraphNode : public simpleStruct
 	{
+	public:
 		simpleGraphNode()
 		{
 		};

@@ -15,8 +15,7 @@ namespace simple::math
 	concept isGraphNode = std::convertible_to<TNode, simpleGraphNode>;
 
 	template <typename TEdge, typename TNode>
-	concept isGraphEdge = std::convertible_to<TEdge, simpleGraphEdge<TNode>> &&
-		std::convertible_to<TNode, simpleGraphNode>;
+	concept isGraphEdge = isGraphNode<TNode> && std::convertible_to<TEdge, simpleGraphEdge<TNode>>;
 
 	// Graph Delegates
 	template <isGraphNode TNode1, isGraphNode TNode2>
