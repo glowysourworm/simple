@@ -136,18 +136,6 @@ namespace simple
 	 *	 Working with templates:  Sometimes need pointer <--> stack conversion
 	 */
 
-	/// <summary>
-	/// Makes a stack reference, or value type into a pointer (for a stack reference)
-	/// </summary>
-	template<typename T>
-	T* simplePointer(T& obj) { return &obj; } //turn reference into pointer!
-
-	/// <summary>
-	/// (overload) Returns a pointer type (for this template instance)
-	/// </summary>
-	template<typename T>
-	T* simplePointer(T* obj) { return obj; } // obj is already pointer, return it!
-
 	class hashGenerator
 	{
 	private:

@@ -18,6 +18,15 @@ namespace simple
 	using simpleArrayCallback = std::function<iterationCallback(const T& item)>;
 
 	/// <summary>
+	/// Definition of function to provide callback: 1) user can return iterationCallback 
+	/// value to either break, or continue the loop. The data for the item is persisted
+	/// to the array (modified)
+	/// </summary>
+	/// <param name="value">callback (current) value (modifiable reference)</param>
+	template<isHashable T>
+	using simpleArrayModifyCallback = std::function<iterationCallback(T& item)>;
+
+	/// <summary>
 	/// Definition of a simple decision predicate
 	/// </summary>
 	template<isHashable T>
@@ -82,6 +91,7 @@ namespace simple
 
 		void forEach(simpleArrayCallback<T> callback);
 		void iterate(simpleArrayCallback<T> callback);
+		void iterateModify(simpleArrayModifyCallback<T> callback);
 		bool areAll(const T& value);
 		bool areAllWhere(simpleArrayPredicate<T> predicate);
 
@@ -407,6 +417,17 @@ namespace simple
 	{
 		for (int index = 0; index < _count; index++)
 		{
+			if (callback(_array[index]) == iterationCallback::breakAndReturn)
+				return;
+		}
+	}
+
+	template<isHashable T>
+	void simpleArray<T>::iterateModify(simpleArrayModifyCallback<T> callback)
+	{
+		for (int index = 0; index < _count; index++)
+		{
+			// (CHECK!) Callback must be pass-by-reference (non-const)
 			if (callback(_array[index]) == iterationCallback::breakAndReturn)
 				return;
 		}

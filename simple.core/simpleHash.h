@@ -196,6 +196,8 @@ namespace simple
 				result = key;
 				return iterationCallback::breakAndReturn;
 			}
+
+			return iterationCallback::iterate;
 		});
 
 		return result;
