@@ -11,7 +11,7 @@ namespace simple::math
 		{
 		};
 
-		~simpleGraphNode()
+		virtual ~simpleGraphNode()
 		{
 		};
 	};

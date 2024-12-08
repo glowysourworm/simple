@@ -28,6 +28,7 @@ namespace simple::math
 			node1 = copy.node1;
 			node2 = copy.node2;
 		}
+		virtual ~simpleGraphEdge() {}
 
 		virtual float weight() const
 		{
@@ -42,19 +43,25 @@ namespace simple::math
 
 		virtual bool operator==(const simpleGraphEdge& edge) const
 		{
-			return node1 == edge.node1 &&
-				node2 == edge.node2;
+			return compare(edge);
 		}
 
 		virtual bool operator!=(const simpleGraphEdge& edge) const
 		{
-			return node1 != edge.node1 ||
-				node2 != edge.node2;
+			return !compare(edge);
 		}
 
 		virtual size_t getHash() const override
 		{
 			return hashGenerator::generateHash(node1, node2);
+		}
+
+	private:
+
+		bool compare(const simpleGraphEdge& edge) const
+		{
+			return (node1 == edge.node1 && node2 == edge.node2) ||
+				   (node1 == edge.node2 && node2 == edge.node1);
 		}
 	};
 }

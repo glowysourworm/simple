@@ -98,6 +98,8 @@ namespace simple
 		bool contains(const T& item);
 		bool any(simpleArrayPredicate<T> predicate);
 
+		simpleArray<T> reverse() const;
+
 		template<typename TResult>
 		TResult aggregate(TResult& seedValue, simpleArrayAggregate<T, TResult> aggregator);
 
@@ -469,6 +471,18 @@ namespace simple
 		return false;
 	}
 
+	template<isHashable T>
+	simpleArray<T> simpleArray<T>::reverse() const
+	{
+		simpleArray<T> result(this->count());
+
+		for (int index = 0; index < this->count(); index++)
+		{
+			result.set(this->count() - index - 1, this->get(index));
+		}
+
+		return result;
+	}
 
 	template<isHashable T>
 	bool simpleArray<T>::any(simpleArrayPredicate<T> predicate)

@@ -10,6 +10,13 @@
 
 namespace simple::math
 {
+	enum class simpleGraphAlgorithmType
+	{
+		DelaunayTriangulation,
+		PrimsAlgorithm,
+		DijkstrasAlgorithm
+	};
+
 	// Abstract graph constraints
 	template <typename TNode>
 	concept isGraphNode = std::convertible_to<TNode, simpleGraphNode>;
