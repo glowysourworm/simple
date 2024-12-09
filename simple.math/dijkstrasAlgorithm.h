@@ -23,8 +23,15 @@ namespace simple::math
         void initialize(const TNode& source, const TNode& destination);
         simpleArray<TNode> run();
 
+        /// <summary>
+        /// Runs the primary iteration loop on the graph to see whether each node will be visited
+        /// during an "infinite" run. 
+        /// </summary>
+        bool isGraphConnected();
+
     private:
 
+        void runIteration(TNode& currentNode);
         void updateOutput(const TEdge& edge, const TNode& adjacentNode, float currentWeight);
 
     private:
@@ -100,6 +107,31 @@ namespace simple::math
         _initialized = true;
     }
 
+    template<isGraphNode TNode, isGraphEdge<TNode> TEdge>
+    bool dijkstrasAlgorithm<TNode, TEdge>::isGraphConnected()
+    {
+        if (!_initialized)
+            throw simpleException("Trying to run dijkstrasAlgorithm before initializing");
+
+        // Reset initialization flag
+        _initialized = false;
+
+        TNode currentNode = _source;
+
+        // Iterate while target not reached (AND) not visited
+        while (!_visitedDict->get(currentNode))
+        {
+            runIteration(currentNode);
+        }
+
+        return !_visitedDict->any([] (const TNode& node, bool visited)
+        {
+            return visited;
+        });
+    }
+
+
+
     /// <summary>
     /// Runs Dijkstra's algorithm on the simpleGraph instance.
     /// </summary>
@@ -108,6 +140,9 @@ namespace simple::math
     {
         if (!_initialized)
             throw simpleException("Trying to run dijkstrasAlgorithm before initializing");
+
+        // Reset initialization flag
+        _initialized = false;
 
         dijkstrasAlgorithm<TNode, TEdge>* that = this;
         TNode currentNode = _source;
@@ -118,45 +153,7 @@ namespace simple::math
         // Iterate while target not reached (AND) not visited
         while (!visitedDict->get(currentNode) && currentNode != _destination)
         {
-            // Fetch the current weight for this vertex
-            float currentWeight = _outputDict->get(currentNode);
-
-            // Mark node as visited
-            visitedDict->set(currentNode, true);
-
-            // Iterate edges connected to the current vertex
-            _graph->iterateAdjacentEdges(currentNode, [&that, &visitedDict, &currentNode, &currentWeight] (const TEdge& adjacentEdge)
-            {
-                TNode adjacentNode = (adjacentEdge.node1 == currentNode) ? adjacentEdge.node2 : adjacentEdge.node1;
-
-                // Not yet visited - CAN MODIFY OUTPUT VALUE
-                if (!visitedDict->get(adjacentNode))
-                {
-                    that->updateOutput(adjacentEdge, adjacentNode, currentWeight);
-                }
-
-                return iterationCallback::iterate;
-            });
-
-            // Select next location from frontier queue - using the smallest weight
-            if (_frontier->count() > 0)
-            {
-                // Lists in the frontier must have an entry
-                simpleHash<TNode, TNode>* nextCostList = _frontier->minValue();
-                float nextCost = _frontier->minKey();
-
-                if (nextCostList->count() == 0)
-                    throw simpleException("Mishandled BST in Dijkstras Algorithm:  dijkstrasAlgorithm.h");
-
-                // Get the first from the list
-                currentNode = nextCostList->firstKey();
-
-                // Maintain frontier list
-                nextCostList->remove(currentNode);
-
-                if (nextCostList->count() == 0)
-                    _frontier->remove(nextCost);
-            }
+            runIteration(currentNode);
         }
 
         // Create the final graph traversal
@@ -224,6 +221,55 @@ namespace simple::math
             }
 
             return reverseList.toArray();
+        }
+    }
+
+    template <isGraphNode TNode, isGraphEdge<TNode> TEdge>
+    void dijkstrasAlgorithm<TNode, TEdge>::runIteration(TNode& currentNode)
+    {
+        dijkstrasAlgorithm<TNode, TEdge>* that = this;
+
+        simpleHash<TNode, bool>* visitedDict = _visitedDict;
+        simpleHash<TNode, float>* outputDict = _outputDict;
+
+        // Fetch the current weight for this vertex
+        float currentWeight = _outputDict->get(currentNode);
+
+        // Mark node as visited
+        visitedDict->set(currentNode, true);
+
+        // Iterate edges connected to the current vertex
+        _graph->iterateAdjacentEdges(currentNode, [&that, &visitedDict, &currentNode, &currentWeight] (const TEdge& adjacentEdge)
+        {
+            TNode adjacentNode = (adjacentEdge.node1 == currentNode) ? adjacentEdge.node2 : adjacentEdge.node1;
+
+            // Not yet visited - CAN MODIFY OUTPUT VALUE
+            if (!visitedDict->get(adjacentNode))
+            {
+                that->updateOutput(adjacentEdge, adjacentNode, currentWeight);
+            }
+
+            return iterationCallback::iterate;
+        });
+
+        // Select next location from frontier queue - using the smallest weight
+        if (_frontier->count() > 0)
+        {
+            // Lists in the frontier must have an entry
+            simpleHash<TNode, TNode>* nextCostList = _frontier->minValue();
+            float nextCost = _frontier->minKey();
+
+            if (nextCostList->count() == 0)
+                throw simpleException("Mishandled BST in Dijkstras Algorithm:  dijkstrasAlgorithm.h");
+
+            // Get the first from the list
+            currentNode = nextCostList->firstKey();
+
+            // Maintain frontier list
+            nextCostList->remove(currentNode);
+
+            if (nextCostList->count() == 0)
+                _frontier->remove(nextCost);
         }
     }
 

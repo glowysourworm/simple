@@ -54,12 +54,12 @@ namespace simple::math
 			                        simplePoint<T>(_bottomRight.x, _topLeft.y));
 			simpleLine<T> lineTop(simplePoint<T>(_bottomRight.x, _topLeft.y), simplePoint<T>(_topLeft.x, _topLeft.y));
 
-			simplePoint<T> intersection;
+			bool intersectsLeft = lineLeft.calculateIntersection(line) != simpleLineIntersectionResult::None;
+			bool intersectsBottom = lineBottom.calculateIntersection(line) != simpleLineIntersectionResult::None;
+			bool intersectsRight = lineRight.calculateIntersection(line) != simpleLineIntersectionResult::None;
+			bool intersectsTop = lineTop.calculateIntersection(line) != simpleLineIntersectionResult::None;
 
-			return lineLeft.intersects(line, intersection) ||
-				lineBottom.intersects(line, intersection) ||
-				lineRight.intersects(line, intersection) ||
-				lineTop.intersects(line, intersection);
+			return intersectsLeft || intersectsBottom || intersectsRight || intersectsTop;
 		}
 
 		simpleRect getSimpleRect() const
