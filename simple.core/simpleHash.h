@@ -221,7 +221,12 @@ namespace simple
 				result = value;
 				return iterationCallback::breakAndReturn;
 			}
+
+			return iterationCallback::iterate;
 		});
+
+		if (result == default_value::value<V>())
+			throw simpleException("No predicate match:  simpleHash<K, V>::firstValue");
 
 		return result;
 	}

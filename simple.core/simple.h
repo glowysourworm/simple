@@ -45,6 +45,8 @@ namespace simple
 	class simpleObject
 	{
 	public:
+		simpleObject() = default;
+		virtual ~simpleObject() = default;
 
 		virtual const char* toString() const
 		{
@@ -63,6 +65,8 @@ namespace simple
 	struct simpleStruct
 	{
 	public:
+		simpleStruct() = default;
+		virtual ~simpleStruct() = default;
 
 		virtual const char* toString() const
 		{

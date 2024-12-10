@@ -72,6 +72,9 @@
     <ClInclude Include="dijkstrasAlgorithm.h">
       <Filter>Header Files\algorithm</Filter>
     </ClInclude>
+    <ClInclude Include="simpleSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="simpleRect.cpp">

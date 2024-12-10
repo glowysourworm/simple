@@ -176,6 +176,7 @@
     <ClInclude Include="simpleLine.h" />
     <ClInclude Include="simplePoint.h" />
     <ClInclude Include="simpleRectangle.h" />
+    <ClInclude Include="simpleSize.h" />
     <ClInclude Include="simpleTriangle.h" />
     <ClInclude Include="simpleVector.h" />
     <ClInclude Include="simpleVectorMath.h" />
