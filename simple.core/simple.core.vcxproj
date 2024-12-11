@@ -54,6 +54,7 @@
     <ClInclude Include="simpleTestFunction.h" />
     <ClInclude Include="simpleTestPackage.h" />
     <ClInclude Include="simpleTimer.h" />
+    <ClInclude Include="simpleType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="simpleTimer.cpp" />

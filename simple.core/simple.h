@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <type_traits>
 
+#include "simpleType.h"
+
 namespace simple
 {
 	/*
@@ -48,6 +50,11 @@ namespace simple
 		simpleObject() = default;
 		virtual ~simpleObject() = default;
 
+		simpleType getType() const
+		{
+			return simpleType(typeid(this));
+		}
+
 		virtual const char* toString() const
 		{
 			return "";
@@ -67,6 +74,11 @@ namespace simple
 	public:
 		simpleStruct() = default;
 		virtual ~simpleStruct() = default;
+
+		simpleType getType() const
+		{
+			return simpleType(typeid(this));
+		}
 
 		virtual const char* toString() const
 		{

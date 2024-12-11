@@ -34,6 +34,9 @@
     <Filter Include="Header Files\unit-test">
       <UniqueIdentifier>{44973a3b-4ce6-4999-8aae-19e866ac29db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\type">
+      <UniqueIdentifier>{56c5e726-3181-4ca5-890d-b34da56229ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="simple.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="simpleTestPackage.h">
       <Filter>Header Files\unit-test</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleType.h">
+      <Filter>Header Files\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
